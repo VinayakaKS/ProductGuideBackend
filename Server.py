@@ -1,4 +1,4 @@
-
+import base64
 from flask import Flask, request
 import os
 from PIL import Image
@@ -15,12 +15,14 @@ app.config["Debug"] = True
 def OCR():
 
     #Reciving the image from client
-    file = request.files['image']
-    image = Image.open(file)
-    
+    file = request.json['string1']
+    decodeit = open('test.png', 'wb')
+    decodeit.write(base64.b64decode((file)))
+    image = cv2.imread('test.png')
+
     #Easy OCR
     reader = easyocr.Reader(['en'], gpu = False)
-    result = reader.readtext('Image.jpg')
+    result = reader.readtext(image)
     
     #Putting the result to ingredients list
     ingredients_list=[]
