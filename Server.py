@@ -15,21 +15,21 @@ app.config["Debug"] = True
 def OCR():
 
     #Reciving the image from client
-    file = request.json['string1']
-    decodeit = open('test.png', 'wb')
+    file = request.json['image_string']
+    decodeit = open('recieved_image.jpg', 'wb')
     decodeit.write(base64.b64decode((file)))
-    image = cv2.imread('test.png')
+    received_image_var = cv2.imread('recieved_image.jpg')
 
     #Easy OCR
     reader = easyocr.Reader(['en'], gpu = False)
-    result = reader.readtext(image)
+    ocr_result = reader.readtext(received_image_var)
     
     #Putting the result to ingredients list
     ingredients_list=[]
-    y = len(result) 
+    y = len(ocr_result) 
     for x in range (0, y):
-        OCR_text = result[x][1]
-        ingredients_list.append(result[x][1])
+        OCR_text = ocr_result[x][1]
+        ingredients_list.append(ocr_result[x][1])
         x = x+1
     
     #Checking if the ingredients list has any toxic substances
@@ -42,13 +42,14 @@ def OCR():
             if check in ingredients_list[j]:
                 toxic_list.append(check)
     print(ingredients_list)
+
     #Recommendation
-    recommendation = "Buy"
+    recommendation = "Safe"
     if (len(toxic_list) != 0):
-        recommendation = "Don't Buy"
+        recommendation = "Not Safe"
     #Returning the result in JSON format           
-    res = {"Toxic": toxic_list, "Recommendation": recommendation}
-    return res
+    final_result = {"Toxic": toxic_list, "Recommendation": recommendation}
+    return final_result
 
 if __name__ == '__main__':
     app.run()
