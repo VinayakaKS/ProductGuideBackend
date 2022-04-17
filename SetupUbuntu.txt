@@ -1,24 +1,8 @@
-Run all the commands
+Download the setup.sh file from https://github.com/VinayakaKS/ProductGuideBackend.git
 
-Check python version
-python --version
+open up a terminal inside the downloaded directory
+Run all the commands mentioned below
 
-If not install python by following the guide 
-https://linuxize.com/post/how-to-install-python-3-9-on-ubuntu-20-04/
+sudo chmod +x setup.sh
 
-Install flask  
-pip3 install Flask
-
-Install PIL
-pip3 install pillow
-
-Install easy OCR
-pip3 install scikit-build
-pip3 install cmake
-sudo apt-get install --upgrade python-pip -y && python -m pip install --upgrade pip
-pip3 install --upgrade pip
-pip3 install easyocr
-
-Install pandas
-pip3 install pandas
-pip3 install xlrd
+./setup.sh
