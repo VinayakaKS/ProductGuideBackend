@@ -23,25 +23,27 @@ def OCR():
     #Easy OCR
     reader = easyocr.Reader(['en'], gpu = False)
     ocr_result = reader.readtext(received_image_var)
-    
+
     #Putting the result to ingredients list
-    ingredients_list=[]
+    ocr_result_list=[]
+    check_list=[]
     y = len(ocr_result) 
     for x in range (0, y):
         OCR_text = ocr_result[x][1]
-        ingredients_list.append(ocr_result[x][1])
+        ocr_result_list.append(ocr_result[x][1])
+        check_list.append(ocr_result[x][1].lower())
         x = x+1
     
     #Checking if the ingredients list has any toxic substances
-    Chemicals_dataframe = pd.read_excel('Chemicals.xls', sheet_name=0) 
+    Chemicals_dataframe = pd.read_excel('Chemicals_list.xls', sheet_name=0) 
     chemicals_list = Chemicals_dataframe['Chemical Name'].tolist()
     toxic_list = []
     for i in range(len(chemicals_list)):
-        check = chemicals_list[i]
-        for j in range(len(ingredients_list)):
-            if check in ingredients_list[j]:
+        check = chemicals_list[i].lower()
+        for j in range(len(check_list)):
+            if check in check_list[j]:
                 toxic_list.append(check)
-    print(ingredients_list)
+    print(ocr_result_list)
 
     #Recommendation
     recommendation = "Safe"
