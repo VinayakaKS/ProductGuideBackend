@@ -16,9 +16,14 @@ def OCR():
 
     #Reciving the image from client
     file = request.json['image_string']
+    # return {"Toxic": ['1','2','3'], "Recommendation": "recommendation"}
     decodeit = open('recieved_image.jpg', 'wb')
     decodeit.write(base64.b64decode((file)))
-    received_image_var = cv2.imread('recieved_image.jpg')
+    received_image_var = cv2.imread('recieved_image.jpg',0)
+
+    #Preprocessing
+    # kernel = np.ones((5,5),np.uint8)
+    # erosion = cv2.erode(received_image_var,kernel,iterations = 1)
 
     #Easy OCR
     reader = easyocr.Reader(['en'], gpu = False)
@@ -49,9 +54,10 @@ def OCR():
     recommendation = "Safe"
     if (len(toxic_list) != 0):
         recommendation = "Not Safe"
+        
     #Returning the result in JSON format           
     final_result = {"Toxic": toxic_list, "Recommendation": recommendation}
     return final_result
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
