@@ -22,7 +22,6 @@ opencv-python-headless==4.5.4.60
 packaging==21.3
 pandas==1.1.5
 Pillow==8.4.0
-pkg_resources==0.0.0
 PyJWT==2.4.0
 pyparsing==3.0.9
 python-bidi==0.4.2
