@@ -3,7 +3,7 @@ charset-normalizer==2.0.12
 click==8.0.4
 cmake==3.22.4
 cycler==0.11.0
-dataclasses==0.8
+dataclasses==0.6
 decorator==4.4.2
 distro==1.7.0
 easyocr==1.4.2
