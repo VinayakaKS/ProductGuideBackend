@@ -31,7 +31,7 @@ PyWavelets==1.1.1
 PyYAML==6.0
 requests==2.27.1
 scikit-build==0.15.0
-scikit-image==0.17.2
+scikit-image==0.15.0
 scipy==1.5.4
 six==1.16.0
 tifffile==2020.9.3
