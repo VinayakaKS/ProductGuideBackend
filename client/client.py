@@ -4,7 +4,7 @@ import json
 
 test_image = open('Image.jpg','rb')
 files = {'image': test_image}
-BASE = "http://192.168.122.1:5000/"
+BASE = "localhost:5000"
 
 with open("Image.jpg", "rb") as image2string:
     converted_string = base64.b64encode(image2string.read())
