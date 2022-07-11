@@ -16,7 +16,6 @@ def OCR():
 
     #Reciving the image from client
     file = request.json['image_string']
-    # return {"Toxic": ['1','2','3'], "Recommendation": "recommendation"}
     product = request.json['products']
     allergens = request.json['allergens']
     decodeit = open('recieved_image.jpg', 'wb')
